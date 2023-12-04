@@ -1,0 +1,19 @@
+// ==UserScript==
+// @name         Next Page In Scavenge Mass
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  It adds a 'next page' button to the mass scavenging screen, making it easier to navigate through the page
+// @author       Jakvbiak
+// @match        https://*.plemiona.pl/game.php?village=*mode=scavenge_mass*
+// @icon         https://dspl.innogamescdn.com/asset/c38e8d7e/graphic/buildings/storage.png
+// @grant        none
+// ==/UserScript==
+
+    let pole = document.getElementsByClassName("paged-nav-item")[0].parentElement
+var villageid = TribalWars.getGameData().village.id
+var page = document.getElementsByTagName("select")[0].selectedIndex + 1
+var link = `https://pl186.plemiona.pl/game.php?village=${villageid}&screen=place&mode=scavenge_mass&page=${page}`
+let button = document.createElement("a")
+button.innerText = "[Next Page]"
+button.href = link
+pole.appendChild(button)
